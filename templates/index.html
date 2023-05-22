@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>verjaardag kalender</title>
+	<style>
+    	body {
+        	background-color: #c3c3c3; /* Set your desired background color */
+   	 }
+	</style>
+	<style>
+    	body {
+        	font-family: Arial, sans-serif; /* Set your desired font family */
+    	}
+
+	    h1, h2, h3, p {
+        	font-family: "Arial", serif; /* Set your desired font family */
+    	}
+	</style>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: left;
+        }
+
+        form {
+            margin: 0 25px;
+        }
+    </style>
+</head>
+<body>
+	<h1>verjaardag kalender</h1>
+    <div class="button-container">
+        <form action="{{ url_for('zoek') }}" method="get">
+            <button type="submit">Zoek</button>
+        </form>
+        <form action="{{ url_for('invoer') }}" method="get">
+            <button type="submit">Invoer</button>
+        </form>
+        <form action="{{ url_for('display') }}" method="get">
+            <button type="submit">Toon</button>
+        </form>
+    </div>
+</body>
+</html>

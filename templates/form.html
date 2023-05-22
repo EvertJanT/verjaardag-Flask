@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gebruiker Invoer</title>
+	<style>
+    	body {
+        	background-color: #c3c3c3; /* Set your desired background color */
+        	background-image: url(verjaardag.jpg); /* Set the background image URL */
+		background-repeat: no-repeat;
+        	background-size: cover;
+   	 }
+	</style>
+	<style>
+    	body {
+        	font-family: Arial, sans-serif; /* Set your desired font family */
+    	}
+
+	    h1, h2, h3, p {
+        	font-family: "Arial", serif; /* Set your desired font family */
+    	}
+	</style>
+</head>
+<body>
+    <h1>Voer uw gegevens in</h1>
+    <form action="/invoer" method="post">
+        <label for="voornaam">Voornaam:</label>
+        <input type="text" name="voornaam" id="voornaam" placeholder="Voer iets in">
+
+        <label for="achternaam">Achternaam:</label>
+        <input type="text" name="achternaam" id="achternaam" placeholder="Voer iets in">
+
+        <h3>Verjaardag</h3>
+        <input type="date" name="date">
+
+        <button type="submit">Akkoord</button>
+        </form>
+
+    <p>Je invoer wordt opgeslagen als je op de akkoord knop drukt</p>
+    {% if user_input %}
+        <p>Invoer was: {{ user_input }}</p>
+    {% endif %}
+	<a href="/">Terug naar invoer</a>
+</body>
+</html>

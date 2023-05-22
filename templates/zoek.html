@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zoekresultaat</title>
+    <style>
+        body {
+            background-color: #c3c3c3; /* Set your desired background color */
+            background-image: url(verjaardag.jpg); /* Set the background image URL */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body {
+            font-family: Arial, sans-serif; /* Set your desired font family */
+        }
+
+        h1, h2, h3, p {
+            font-family: "Arial", serif; /* Set your desired font family */
+        }
+    </style>
+</head>
+<body>
+    <h1>Zoekresultaat</h1>
+    
+    <form method="POST">
+        <label for="voornaam">Voornaam:</label>
+        <input type="text" id="voornaam" name="voornaam">
+        
+        <label for="achternaam">Achternaam:</label>
+        <input type="text" id="achternaam" name="achternaam">
+        <br>
+        <input type="submit" value="Akkoord">
+    </form>
+
+    {% if geboortedatum != 'niet gevonden' %}
+        <p>Geboortedatum: {{ geboortedatum }}</p>
+        <p>naam : {{ voornaam }} {{ achternaam }}</p>
+    {% else %}
+        <p>Geen resultaten gevonden.</p>
+    {% endif %}
+    
+    <a href="/">Terug naar invoer</a>
+</body>
+</html>
+
+
