@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>overzicht van alle gebruiker invoer</title>
+	<style>
+    	body {
+            background-image: url("{{ url_for('display_image') }}");
+            background-repeat: no-repeat;
+            background-size: cover;			
+   	 }
+	</style>
+	<style>
+    	body {
+        	font-family: Arial, sans-serif; /* Set your desired font family */
+    	}
+
+	    h1, h2, h3, p {
+        	font-family: "Arial", serif; /* Set your desired font family */
+    	}
+	</style>
+</head>
+<body>
+    <h1>overzicht van alle gebruiker invoer</h1>
+    <ul>
+    {% for input in mensen %}
+        <li>{{ input }}</li>
+    {% endfor %}
+    </ul>
+	<a href="/">Terug naar menu</a>
+</body>
+</html>

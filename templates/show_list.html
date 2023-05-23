@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>overzicht van alle gebruiker invoer</title>
+	<style>
+    	body {
+            background-image: url("{{ url_for('display_image') }}");
+            background-repeat: no-repeat;
+            background-size: cover;			
+   	 }
+	</style>
+	<style>
+    	body {
+        	font-family: Arial, sans-serif; /* Set your desired font family */
+    	}
+
+	    h1, h2, h3, p {
+        	font-family: "Arial", serif; /* Set your desired font family */
+    	}
+	</style>
+</head>   
+<body>
+    <h1>Overzicht van alle gebruiker invoer</h1>
+    <form action="/show_list" method="post">
+        <label for="password">wachtwoord:</label>
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Invoer">
+    </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    
+    {% if show_list %}
+        <ul>
+        {% for input in mensen %}
+            <li>{{ input }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="/">Terug naar menu</a>
+</body>
+</html>
+

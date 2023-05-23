@@ -7,6 +7,8 @@ app = Flask(__name__)
 # maak een lege mensen arry 
 mensen = []
 
+PASSWORD = "mysecretpassword" 
+
 # het pad naar de mensen JSON file
 json_file_path = os.path.join(os.path.dirname(__file__), 'templates', 'mensen.json')
 
@@ -81,6 +83,19 @@ def maak_array():
         array_name.append(fn)
         array_date.append(gd)
     return array_name, array_date
+
+@app.route('/show_list', methods=['GET', 'POST'])
+def show_list():
+    if request.method == 'POST':
+        password = request.form.get('password')
+
+        if password == PASSWORD:
+            return render_template('show_list.html', show_list=True, mensen=mensen)
+        else:
+            error = "onjuist wachtwoord"
+            return render_template('show_list.html', error=error)
+    return render_template('show_list.html')
+   
 
 
 def save_user_inputs():
