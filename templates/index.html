@@ -4,7 +4,10 @@
     <title>verjaardag kalender</title>
 	<style>
     	body {
-        	background-color: #c3c3c3; /* Set your desired background color */
+            background-image: url("{{ url_for('display_image') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        	
    	 }
 	</style>
 	<style>
@@ -29,6 +32,7 @@
 </head>
 <body>
 	<h1>verjaardag kalender</h1>
+    
     <div class="button-container">
         <form action="{{ url_for('zoek') }}" method="get">
             <button type="submit">Zoek</button>

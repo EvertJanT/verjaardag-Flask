@@ -4,12 +4,12 @@
     <title>Zoekresultaat</title>
     <style>
         body {
-            background-color: #c3c3c3; /* Set your desired background color */
-            background-image: url(verjaardag.jpg); /* Set the background image URL */
+            background-image: url("{{ url_for('display_image') }}");
             background-repeat: no-repeat;
             background-size: cover;
         }
-
+    </style>
+    <style>                    
         body {
             font-family: Arial, sans-serif; /* Set your desired font family */
         }
@@ -20,26 +20,27 @@
     </style>
 </head>
 <body>
-    <h1>Zoekresultaat</h1>
+        <h1>zoek de verjaardagsdatum</h1>
+        <form action="/zoek" method="post">
+            <h3>selecteer door op akkoord te drukken</h3>
+            <select name="picklist">
+                {% for option in picklist_options %}
+                    <option value="{{ option }}">{{ option }}</option>   
+                {% endfor %}
+            </select>
+            <br>
+            <input type="submit" value="Akkoord">
+        </form>
     
-    <form method="POST">
-        <label for="voornaam">Voornaam:</label>
-        <input type="text" id="voornaam" name="voornaam">
-        
-        <label for="achternaam">Achternaam:</label>
-        <input type="text" id="achternaam" name="achternaam">
-        <br>
-        <input type="submit" value="Akkoord">
-    </form>
-
-    {% if geboortedatum != 'niet gevonden' %}
-        <p>Geboortedatum: {{ geboortedatum }}</p>
-        <p>naam : {{ voornaam }} {{ achternaam }}</p>
-    {% else %}
-        <p>Geen resultaten gevonden.</p>
-    {% endif %}
-    
-    <a href="/">Terug naar invoer</a>
+        {% if request.method == 'POST' %}
+            {% if request.form.picklist %}
+                <p>Naam: {{ request.form.picklist }}</p>
+                <p>Geboortedatum: {{ geboortedatums[picklist_options.index(request.form.picklist)] }}</p>
+            {% else %}
+                <p>Geen optie geselecteerd.</p>
+            {% endif %}
+        {% endif %}
+    <a href="/">Terug naar menu</a>
 </body>
 </html>
 

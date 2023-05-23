@@ -20,6 +20,7 @@ if os.path.exists(json_file_path):
 
 @app.route('/')
 def start():
+    image = 'verjaardag.jpg'
     return render_template('index.html')
 
 @app.route('/invoer', methods=['GET', 'POST'])
@@ -48,12 +49,8 @@ def invoer():
 @app.route('/zoek', methods=['GET', 'POST'])
 def zoek():
     if request.method == 'POST':
-        # Get the values entered by the user
-        voornaam = request.form.get('voornaam')
-        achternaam = request.form.get('achternaam')
-        geboortedatum = vind_geboortedatum(voornaam, achternaam)
-        return render_template('zoek.html', geboortedatum=geboortedatum, voornaam=voornaam, achternaam=achternaam)
-
+        picklist_array_name, picklist_array_date = maak_array()
+        return render_template('zoek.html', picklist_options=picklist_array_name, geboortedatums = picklist_array_date)
     return render_template('zoek.html')
 
 @app.route('/display')
@@ -73,10 +70,26 @@ def vind_geboortedatum(voornaam, achternaam):
                 break
     return geboortedatum
 
+def maak_array():
+    array_name = []
+    array_date=[]
+    for persoon in mensen:
+        vn = persoon['voornaam']
+        an = persoon['achternaam']
+        gd = persoon['date']
+        fn = vn + ' ' + an
+        array_name.append(fn)
+        array_date.append(gd)
+    return array_name, array_date
+
 
 def save_user_inputs():
     with open(json_file_path, 'w') as file:
         json.dump(mensen, file, indent=4)
+
+@app.route('/image')
+def display_image():
+    return send_file('verjaardag.jpg', mimetype='image/jpeg')
 
 if __name__ == '__main__':
     app.run()
