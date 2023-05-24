@@ -9,15 +9,17 @@
             background-size: cover;			
    	 }
 	</style>
-	<style>
-    	body {
-        	font-family: Arial, sans-serif; /* Set your desired font family */
-    	}
-
-	    h1, h2, h3, p {
-        	font-family: "Arial", serif; /* Set your desired font family */
-    	}
-	</style>
+    <style>
+        body, h1, h2, h3, p {
+            font-family: "PermanentMarker-Regular", Arial, sans-serif; /* Set your desired font family */
+        }
+    </style>    
+    <style>
+        @font-face {
+            font-family: 'PermanentMarker-Regular';
+            src: url("{{ url_for('static', filename='PermanentMarker-Regular.ttf') }}") format('truetype');
+        }
+    </style>
 </head>   
 <body>
     <h1>Overzicht van alle gebruiker invoer</h1>
